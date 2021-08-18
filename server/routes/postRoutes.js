@@ -17,6 +17,7 @@ router.post("/", postController.createPost, (req, res) => {
 router.put("/", postController.editPost, (req, res) => {
   res.status(200).send("Successfully edited Post");
 });
+
 //DELETE request for Delete Post
 router.delete("/", postController.deletePost, (req, res) => {
   res.status(200).send("Successfully deleted Post");
