@@ -1,7 +1,7 @@
 {
   "name": "actualize",
   "version": "1.0.0",
-  "description": "Track your yearly expenses",
+  "description": "Join an evidence-based community support network",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node server/server.js",
@@ -16,9 +16,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/"
+    "url": "git+https://github.com/Team-Heat-Seeking-Chicken/Iterating-Chicken"
   },
-  "author": "Wesley, George, Dom",
+  "authors": [
+    {
+      "name": "Graham Pierce"
+    },
+    {
+      "name": "George Zhao"
+    },
+    {
+      "name": "Natsuki Wada"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Wesley Mungal"
+    },
+    {
+      "name": "Dominic DiSalvo"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
