@@ -54,7 +54,7 @@ import {
         duration: newDuration,
         results: newResults,
         author: newAuthor,
-        created: newDate
+        created_at: newDate
       }
 
 

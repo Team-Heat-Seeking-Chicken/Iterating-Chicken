@@ -64,7 +64,7 @@ import { grey } from "@material-ui/core/colors";
         duration: newDuration,
         results: newResults,
         author: newAuthor,
-        created: newDate
+        created_at: newDate
       }
 
       await fetch('/posts', {
@@ -188,7 +188,7 @@ import { grey } from "@material-ui/core/colors";
          <p className='postText'> {' ' + this.props.postProps.results}</p>
          <h3>Author: {' ' + this.props.postProps.author}</h3>
          {/* <p></p> */}
-         <h3>Date Posted:{' ' + this.props.postProps.created}</h3>
+         <h3>Date Posted:{' ' + this.props.postProps.created_at}</h3>
         {/* <p> </p> */}
       </PostContainer>
       )
@@ -207,7 +207,7 @@ import { grey } from "@material-ui/core/colors";
         <p className='postText'> {' ' + this.props.postProps.results}</p>
         <h3>Author: {' ' + this.props.postProps.author}</h3>
         {/* <p></p> */}
-        <h3>Date Posted:{' ' + this.props.postProps.created}</h3>
+        <h3>Date Posted:{' ' + this.props.postProps.created_at}</h3>
        {/* <p> </p> */}
        <span><Button onClick={this.changeToEdit} color='primary' variant="contained" >Edit Post</Button><Button onClick={this.deletePost} color='secondary' variant="contained">Delete Post</Button></span>
         </PostContainer>

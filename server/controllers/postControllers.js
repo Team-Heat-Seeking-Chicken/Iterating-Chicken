@@ -8,7 +8,7 @@ postController.createPost = (req, res, next) => {
     .save()
     .then((data) => {
       res.locals.post = data;
-      console.log(data)
+      // console.log(data)
       return next();
     })
     .catch((err) =>
@@ -16,50 +16,43 @@ postController.createPost = (req, res, next) => {
     );
 };
 
-
-postController.getAllPosts= (req,res,next) =>{
-  console.log('in postcontoller')
+postController.getAllPosts = (req, res, next) => {
+  // console.log('in postcontoller')
   models.Post.find({})
-  .then(allPosts=>{
-    // console.log('allposts', allPosts)
+  .then(allPosts => {
     res.locals.allPosts = allPosts;
     return next()
   })
   .catch((err) =>
     next({ message: `postController.getAllPost: Error: ${err}` })
   );
-  
 }
 
-postController.editPost=(req,res,next)=>{
+postController.editPost = (req, res, next) => {
   console.log("This req.body :", req.body)
-   models.Post.findOne({_id: req.body.id})
-   .then((post)=>{
-     post.title= req.body.title,
-     post.goal= req.body.goal,
-     post.method= req.body.method,
-     post.duration= req.body.duration,
-     post.results= req.body.results
-     post.created =req.body.created
+  models.Post.findOne({ _id: req.body.id })
+  .then((post) => {
+    post.title = req.body.title,
+    post.goal = req.body.goal,
+    post.method = req.body.method,
+    post.duration = req.body.duration,
+    post.results = req.body.results
+    post.created_at = req.body.created_at
 
-     post.save()
-     .then((post)=res.json(post))
-     .catch((err) => res.status(400).json("Error :" + err));
+    post.save()
+    .then((post) = res.json(post))
+    .catch((err) => res.status(400).json("Error :" + err));
    })
-   .catch((err)=>res.status(400).json("error,student not found : " +err));
+  .catch((err)=>res.status(400).json("error,student not found : " + err));
 }
-postController.deletePost=(req,res,next)=>{
 
-  models.Post.findOneAndDelete({_id: req.body.id})
-  .then(()=>{ 
-res.json("POST DELETED FOREVER!");
+postController.deletePost = (req, res, next) => {
+  models.Post.findOneAndDelete({ _id: req.body.id })
+  .then(() => { 
+    res.json("POST DELETED FOREVER!");
   })
-  .catch((err)=>res.status(400).json("Error, Post not found: " + err));
+  .catch((err) => res.status(400).json("Error, Post not found: " + err));
 }
-
-
-
-
 
 // title: { type: String, required:true},
 // goal: { type: String, required: true },
@@ -67,7 +60,6 @@ res.json("POST DELETED FOREVER!");
 // duration: { type: String },
 // results: { type: String },
 // author: { type: String },
-// created: { type: String }
-
+// created_at: { type: String }
 
 module.exports = postController;
