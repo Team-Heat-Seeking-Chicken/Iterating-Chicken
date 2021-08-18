@@ -53,7 +53,7 @@ render(){
                       <Grid item xs={12}>
                         <TextField id='eComment' fullWidth label='Comment' name='Comment' size='medium' variant='outlined' defaultValue= {this.props.postProps.title} /> 
                       </Grid>
-                      <Button color="primary" className='submitPost' fullWidth variant="contained" onClick={this.editPost}>
+                      <Button color="primary" className='submitComment' fullWidth variant="contained" onClick={this.editPost}>
                       Edit Comment
                     </Button>
                     </Grid>
@@ -62,9 +62,26 @@ render(){
         </Container>
     )
 
-    const nonAuthoredPost = ()
+    const nonAuthoredPost = (
+        <CommentContainer maxWidth='md' >
+         <p className='postText'> {' ' + this.props.postProps.results}</p>
+         <h3>Author: {' ' + this.props.postProps.author}</h3>
+         {/* <p></p> */}
+         <h3>Date Posted:{' ' + this.props.postProps.created}</h3>
+        {/* <p> </p> */}
+      </CommentContainer>
+    )
 
-    const authoredPost = ()
+    const authoredPost = (
+        <CommentContainer maxWidth='md' >
+        <p className='postText'> {' ' + this.props.postProps.results}</p>
+        <h3>Author: {' ' + this.props.postProps.author}</h3>
+        {/* <p></p> */}
+        <h3>Date Posted:{' ' + this.props.postProps.created}</h3>
+       {/* <p> </p> */}
+       <span><Button onClick={this.changeToEdit} color='primary' variant="contained" >Edit Post</Button><Button onClick={this.deleteComment} color='secondary' variant="contained">Delete Post</Button></span>
+       </CommentContainer>
+    )
 
     if (this.state.editComment){
         return (
