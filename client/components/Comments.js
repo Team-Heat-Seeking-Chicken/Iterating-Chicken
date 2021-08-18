@@ -24,7 +24,7 @@ class Comment extends Component {
     }
 
 
-
+    //onclick function to edit comment, takes in an event to identify correct comment
     async editComment(e) {
 
         const body = await {
@@ -32,11 +32,12 @@ class Comment extends Component {
     }
 
 
-
+    //onlick function to delete comment, takes in event to identify correct comment
     async deleteComment(e){
 
     }    
 
+    //onclick to activate edit form via setting state
     changeToEdit(e) {
         // const targetId = e.target.value;
         this.setState({ editComment: true})
@@ -45,13 +46,15 @@ class Comment extends Component {
 
 render(){
 
+    //displays edit comment form
     const editComment = (
         <Container maxWidth='md'>
           <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
-                        <TextField id='eComment' fullWidth label='Comment' name='Comment' size='medium' variant='outlined' defaultValue= {this.props.postProps.title} /> 
+                          {/* the defaultvalue needs to changed to the contents of the comment */}
+                        <TextField id='eComment' fullWidth label='Comment' name='Comment' size='medium' variant='outlined' multiline={true} defaultValue= {this.props.postProps.title} /> 
                       </Grid>
                       <Button color="primary" className='submitComment' fullWidth variant="contained" onClick={this.editPost}>
                       Edit Comment
@@ -62,6 +65,7 @@ render(){
         </Container>
     )
 
+    //what is seen if user is not author of comment
     const nonAuthoredComment = (
         <CommentContainer maxWidth='md' >
          <p className='postText'> {' ' + this.props.postProps.results}</p>
@@ -72,6 +76,7 @@ render(){
       </CommentContainer>
     )
 
+    //what is seen if the user is the author of comment
     const authoredComment = (
         <CommentContainer maxWidth='md' >
         <p className='postText'> {' ' + this.props.postProps.results}</p>
@@ -88,6 +93,7 @@ render(){
           editComment
         )
       }
+      //this statement needs to be changed, no props are being passed yet so this will fail
       else if (this.props.appState.user.username === this.props.postProps.author){
         return (
             authoredComment
