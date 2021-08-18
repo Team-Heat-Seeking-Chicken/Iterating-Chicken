@@ -51,7 +51,7 @@ render(){
                   <Grid item xs={12}>
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
-                        <TextField id='eTitle' fullWidth label='Title' name='Title' size='medium' variant='outlined' defaultValue= {this.props.postProps.title} /> 
+                        <TextField id='eComment' fullWidth label='Comment' name='Comment' size='medium' variant='outlined' defaultValue= {this.props.postProps.title} /> 
                       </Grid>
                       <Button color="primary" className='submitPost' fullWidth variant="contained" onClick={this.editPost}>
                       Edit Comment
@@ -62,7 +62,25 @@ render(){
         </Container>
     )
 
+    const nonAuthoredPost = ()
 
+    const authoredPost = ()
+
+    if (this.state.editComment){
+        return (
+          editComment
+        )
+      }
+      else if (this.props.appState.user.username === this.props.postProps.author){
+        return (
+          authoredCommment
+        )
+      }
+      else{
+        return (
+          nonAuthoredComment
+           )
+      }
 }
 
 
