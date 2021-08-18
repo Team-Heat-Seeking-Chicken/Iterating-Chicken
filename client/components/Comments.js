@@ -62,7 +62,7 @@ render(){
         </Container>
     )
 
-    const nonAuthoredPost = (
+    const nonAuthoredComment = (
         <CommentContainer maxWidth='md' >
          <p className='postText'> {' ' + this.props.postProps.results}</p>
          <h3>Author: {' ' + this.props.postProps.author}</h3>
@@ -72,7 +72,7 @@ render(){
       </CommentContainer>
     )
 
-    const authoredPost = (
+    const authoredComment = (
         <CommentContainer maxWidth='md' >
         <p className='postText'> {' ' + this.props.postProps.results}</p>
         <h3>Author: {' ' + this.props.postProps.author}</h3>
@@ -90,7 +90,7 @@ render(){
       }
       else if (this.props.appState.user.username === this.props.postProps.author){
         return (
-          authoredCommment
+            authoredComment
         )
       }
       else{
