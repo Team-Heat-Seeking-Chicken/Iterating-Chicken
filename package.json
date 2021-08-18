@@ -1,27 +1,37 @@
 {
-  "name": "moneytracker",
+  "name": "actualize",
   "version": "1.0.0",
   "description": "Track your yearly expenses",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack serve --open"
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve --open\" \" nodemon server/server.js\" "
   },
-  "nodemonConfig":{
-    "ignore":["build","client"]
+  "nodemonConfig": {
+    "ignore": [
+      "build",
+      "client"
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lagnum22/solo-project.git"
+    "url": "git+https://github.com/"
   },
-  "author": "Wesley Mungal",
+  "author": "Wesley, George, Dom",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "classnames": "^2.3.1",
+    "concurrently": "^6.2.1",
+    "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "mongoose": "^5.13.6",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

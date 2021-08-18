@@ -1,4 +1,245 @@
 * {
   /* background-color: aqua; */
   box-sizing: border-box;
+  color: white;
+  font-family: 'Oswald', sans-serif;
+ 
 }
+body{
+ /* background-image: url(https://wallpapercave.com/wp/wp7260997.jpg); */
+  background-image: url(https://cdn.discordapp.com/attachments/876099998331322400/876859624836431892/comp_100000000.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #ebf7ff;
+  
+}
+
+
+
+#login {
+  position: center;
+  margin-top:300px;
+}
+
+#createUserBox {
+  position: center;
+  margin-top:300px;
+}
+
+
+.createUser {
+  margin-top: 10px;
+}
+
+#feedContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  margin: 25px;
+  margin-left: 200px;
+  margin-right: 200px;
+  border-style: solid;
+  border-color: black;
+}
+
+.post {
+  max-width: 80%;
+  min-width: 80%;
+  margin: 10px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-color: black;
+  padding: 5px;
+  background-color: #a2a2a3;
+}
+
+/* trial for nav bar */
+.topnav {
+  width: 100%;
+  overflow: hidden;
+  background-color: rgb(233, 124, 61) ;
+  display: flex;
+  flex-direction: column;
+  /* border-radius: 20px; */
+  /* */
+  margin-bottom: 25px;
+  box-shadow: 0 0 5px 2px #6bb7ff
+}
+
+.topnav a {
+  float: left;
+  color: #274344;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.logoWelcome {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+  width: 96%;
+}
+
+#logo {
+  border-radius: 5px;
+  margin-top: 2px ;
+  margin-left: 5px;
+  margin-bottom: 2px ;
+}
+
+#createPost {
+  width: 100%;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #a2a2a3;
+  color: white;
+}
+
+button{
+  background-color: black;
+}
+button:hover{
+  background-color: none;
+}
+
+.MuiContainer-root {
+  border: 4px  black solid;
+  background: rgb(255, 255, 255);
+  padding: 25px;
+  border-radius: 10px;
+  margin: auto;
+  margin-bottom: 15px;
+  border: 0;
+  box-shadow: 0 0 2px 2px #8ac2f7
+  
+}
+
+
+
+.MuiButtonBase-root {
+  background-color: rgb(233, 124, 61);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.postText{
+  border: 2px  gray solid;
+  border-radius: 10px;
+  padding: 10px;
+  color: rgb(15, 15, 15);
+  word-wrap: break-word;
+  background:rgb(241, 241, 241)
+}
+
+
+#feed {
+  background: 0;
+  box-shadow: 0 0 0 0px;
+}
+
+h3{
+  color: rgb(15, 15, 15);
+}
+b{
+  color:rgb(15, 15, 15);
+  font-size: 26px;
+  /* text-shadow: 2px 2px 2px rgba(99, 144, 241, 0.616); */
+}
+
+.postHeader {
+  word-wrap: break-word;
+  color: rgb(15, 15, 15);
+  font-size: 30px;
+  /* font-style: italic; */
+  /* text-decoration: underline; */
+  /* text-align: center; */
+   
+}
+
+/* .postHeader:hover {
+
+  color: rgb(43, 100, 224); 
+
+} */
+
+
+.sticky {
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 99%; /* Full width */
+  margin-top: 5px;
+  z-index: 10;
+}
+
+#loginButton {
+  background: rgb(99, 144, 241);
+}
+
+#createUser {
+  background: rgb(233, 124, 61);
+}
+
+#createNewUser {
+  background: rgb(99, 144, 241);
+}
+
+#createNewUser:hover {
+  background: rgb(233, 124, 61);
+}
+
+#createPost {
+  background:rgb(99, 144, 241);
+  width:41%;
+  align-self: center;
+  margin-right: 50px
+}
+
+#createPost:hover {
+  background:rgb(43, 100, 224);
+}
+
+#submitPost {
+  background:rgb(99, 144, 241);
+  margin: 13px 0px 5px 0px;
+}
+
+#submitPost:hover {
+  background:rgb(43, 100, 224);
+}
+
+#cancelPost {
+  background: rgb(233, 124, 61);
+}
+
+#cancelPost:hover {
+  background: rgb(233, 124, 61);
+}
+/* hexcodes:  
+
+dom's grey #a2a2a3;
+
+
+
+#758E9E
+#44535C
+#A2C5DB
+#ACD1E8
+#8FAEC2
+*/
+
+
