@@ -18,7 +18,7 @@ userController.createUser = (req, res, next) => {
 
 userController.verifyUser = (req, res, next) => {
   // console.log("req.body", req.body)
-  models.User.findOne({username:req.body.username, password:req.body.password})
+  models.User.findOne({ username:req.body.username, password:req.body.password })
   .then((result) => {
     // console.log("this result of User.findOne: ", result);
     if (result === null) {
@@ -38,8 +38,5 @@ userController.verifyUser = (req, res, next) => {
   );
 
 };
+
 module.exports = userController;
-// .exec((err,user)=>{
-//   console.log(user)
-//   return next()
-// })

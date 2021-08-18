@@ -4,6 +4,8 @@ const path = require("path");
 const userController = require("./controllers/userControllers");
 
 const postRoutes = require("./routes/postRoutes");
+const commentRoutes = require("./routes/commentRoutes");
+
 //* handle parsing request body
 app.use(express.json());
 //this parses url encoded body content from incomming requests ans place it in req.body....
@@ -26,14 +28,11 @@ app.post("/login", userController.verifyUser, (req, res) => {
   res.json(res.locals.result); //temp message to front end
 });
 
-//
 // Post section
-//
-
 app.use("/posts", postRoutes);
 
-
-
+// Comment section
+app.use("/comments", commentRoutes);
 
 //this catches any requests to an unknown route
 app.use((req, res) => res.sendStatus(404));
