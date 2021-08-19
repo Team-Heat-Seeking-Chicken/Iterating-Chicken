@@ -13,9 +13,9 @@ import {
 import { borders } from '@material-ui/system';
 import { StylesProvider, styled } from '@material-ui/core/styles';
 
-// const SubmitContainer = styled(Container)({
+const SubmitContainer = styled(Container)({
   
-// })
+})
 
   class NavBar extends Component {
     constructor(props){
@@ -83,6 +83,7 @@ import { StylesProvider, styled } from '@material-ui/core/styles';
               {/* <a className="active" href="#">Actualize</a> */}
           <Button color="primary" id='createPost' className='createPost' fullWidth variant="contained" size='small' onClick={this.createPostOnClick}>Create Post</Button>
               <center><h1 id='welcome'>Welcome {this.props.AppState.user.username}</h1></center>
+              <Button color="primary" id='logout' className='logout' halfWidth variant="contained" size='small' onClick={this.logout}>Log Out</Button>
               {/* <input id='createPost' type="text" placeholder="create post"></input> */}
             </div>
           
