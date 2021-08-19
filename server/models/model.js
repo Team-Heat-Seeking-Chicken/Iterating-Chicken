@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const mongoURI =
-  "mongodb+srv://admin:admin@jared.uoo20.mongodb.net/Iteration?retryWrites=true&w=majority";
+  "mongodb+srv://taskapp:Musso06@cluster0.xxusx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once("open", () => {
@@ -13,7 +13,8 @@ const commentSchema = new Schema({
   suggestion: { type: String, required: true },
   author: { type: String, required: true }, 
   created_at: { type: String },
-  post: { type: Schema.Types.ObjectId, ref: "Post" },
+  // post: { type: Schema.Types.ObjectId, ref: 'Post' },
+  post: { type: String },
   likes: { type: Number, required: true, default: 0 },
 });
 
@@ -27,15 +28,17 @@ const postSchema = new Schema({
   results: { type: String },
   author: { type: String },
   created_at: { type: String },
-  comments: {
-  //   suggestion: String,
-  //   author: String, 
-  //   created_at: String,
-  //   likes: Number,
-  //   id: {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment'
-  },
+  comments: [],
+  // comments: [{
+  //   // suggestion: String,
+  //   // author: String, 
+  //   // created_at: String,
+  //   // likes: Number,
+  //   // id: {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Comment'
+  //   // }
+  // }],
   // likes: { type: Number, required: true, default: 0 },
 });
 
