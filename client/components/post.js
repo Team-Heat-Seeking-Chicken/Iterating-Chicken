@@ -9,29 +9,26 @@ import {
   Typography,
   Toolbar,
   Link,
-  } from "@material-ui/core";
-  import { StylesProvider, makeStyles, styled } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { StylesProvider, makeStyles, styled } from '@material-ui/core/styles';
 import { grey } from "@material-ui/core/colors";
 
 
-  const PostContainer = styled(Container)({
-    background: 'rgb(245, 245, 245)',
-    color: 'black',
-    border: '3px gray solid',
-    boxShadow: '0 0 0px 0px #8ac2f7'
+const PostContainer = styled(Container)({
+  background: 'rgb(245, 245, 245)',
+  color: 'black',
+  border: '3px gray solid',
+  boxShadow: '0 0 0px 0px #8ac2f7'
+})
 
-  })
+const EditContainer = styled(Container)({
+  background: 'rgb(70, 70, 70)',
+  color: 'white'
+})
 
-  const EditContainer = styled(Container)({
-    background: 'rgb(70, 70, 70)',
-    color: 'white'
-
-  })
-
-  const PostTextField = styled(TextField)({
-    color: 'white',
-
-  })
+const PostTextField = styled(TextField)({
+  color: 'white',
+})
 
 
   class Post extends Component {

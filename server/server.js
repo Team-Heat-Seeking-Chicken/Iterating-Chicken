@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const cookieParser = require("cookie-parser");
+
 const userController = require("./controllers/userControllers");
+const cookieController = require("./controllers/cookieControllers");
 
 const postRoutes = require("./routes/postRoutes");
 const commentRoutes = require("./routes/commentRoutes");
@@ -10,6 +13,7 @@ const commentRoutes = require("./routes/commentRoutes");
 app.use(express.json());
 //this parses url encoded body content from incomming requests ans place it in req.body....
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));
@@ -24,7 +28,12 @@ app.post("/new", userController.createUser, (req, res) => {
 });
 
 //POST request for Login
-app.post("/login", userController.verifyUser, (req, res) => {
+app.post("/login", 
+  // cookieController.verifyCookie,
+  userController.verifyUser, 
+  cookieController.setSSIDCookie, 
+  // cookieController.verifyCookie,
+  (req, res) => {
   res.json(res.locals.result); //temp message to front end
 });
 

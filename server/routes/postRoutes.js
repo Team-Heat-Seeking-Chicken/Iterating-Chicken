@@ -1,11 +1,16 @@
 //might not need this just yet
 const express = require("express");
 const postController = require("../controllers/postControllers");
+const cookieController = require("../controllers/cookieControllers");
 const router = express.Router();
 
 //GET request for user feed
-router.get("/", postController.getAllPosts, (req, res) => {
-  res.json(res.locals.allPosts);
+router.get("/", 
+postController.getAllPosts,
+cookieController.verifyCookie,
+(req, res) => {
+  // res.json(res.locals.allPosts);
+  res.json(res.locals);
 });
 
 //POST request for creating new Post

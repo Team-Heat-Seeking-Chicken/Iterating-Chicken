@@ -8,7 +8,6 @@ postController.createPost = (req, res, next) => {
     .save()
     .then((data) => {
       res.locals.post = data;
-      // console.log(data)
       return next();
     })
     .catch((err) =>
@@ -17,7 +16,6 @@ postController.createPost = (req, res, next) => {
 };
 
 postController.getAllPosts = (req, res, next) => {
-  // console.log('in postcontoller')
   models.Post.find({})
   .then(allPosts => {
     res.locals.allPosts = allPosts;
@@ -53,13 +51,5 @@ postController.deletePost = (req, res, next) => {
   })
   .catch((err) => res.status(400).json("Error, Post not found: " + err));
 }
-
-// title: { type: String, required:true},
-// goal: { type: String, required: true },
-// method: { type: String },
-// duration: { type: String },
-// results: { type: String },
-// author: { type: String },
-// created_at: { type: String }
 
 module.exports = postController;
