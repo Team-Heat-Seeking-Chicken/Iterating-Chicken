@@ -23,16 +23,17 @@ app.get("/", (req, res) => {
 });
 
 //POST request for create user
-app.post("/new", userController.createUser, (req, res) => {
+app.post("/new", 
+  userController.createUser,
+  cookieController.setSSIDCookie,
+  (req, res) => {
   res.json(res.locals.user); //json to front end
 });
 
 //POST request for Login
 app.post("/login", 
-  // cookieController.verifyCookie,
   userController.verifyUser, 
   cookieController.setSSIDCookie, 
-  // cookieController.verifyCookie,
   (req, res) => {
   res.json(res.locals.result); //temp message to front end
 });
