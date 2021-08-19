@@ -38,6 +38,12 @@ app.post("/login",
   res.json(res.locals.result); //temp message to front end
 });
 
+app.get('/logout',
+cookieController.deleteSSIDCookie,
+(req, res) => {
+  res.send('logged out')
+})
+
 // Post section
 app.use("/posts", postRoutes);
 
