@@ -24,7 +24,6 @@ cookieController.verifyCookie = (req, res, next) => {
 cookieController.deleteSSIDCookie = (req, res, next) => {
   const userCookie = req.cookies.SSID;
   res.clearCookie('SSID')
-  //res.send('cookie SSID cleared')
   return next();
 }
 
