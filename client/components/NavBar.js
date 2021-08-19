@@ -90,6 +90,15 @@ class NavBar extends Component {
                 Create Post
             </Button>
             <center><h1 id='welcome'>Welcome {this.props.AppState.user.username}</h1></center>
+            <Button 
+              color="primary" 
+              id='logout' 
+              className='logout' 
+              halfwidth="true" 
+              size='small' 
+              onClick={this.props.logout}>
+              Log Out
+            </Button>
             {/* <input id='createPost' type="text" placeholder="create post"></input> */}
           </div>
         </div>
