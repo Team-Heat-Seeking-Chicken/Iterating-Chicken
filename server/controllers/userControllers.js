@@ -1,9 +1,13 @@
 const models = require("../models/model");
+const bcrypt = require("bcrypt");
+const saltRound = 10;
+
 const userController = {};
 
-userController.createUser = (req, res, next) => {
-  // console.log("from frontend: ", req.body)
-  const newUser = new models.User(req.body);
+userController.createUser = async (req, res, next) => {
+  const { password } = req.body;
+  const encryptedPassword = await bcrypt.hash(password, saltRound);
+  const newUser = new models.User({...req.body, password: encryptedPassword});
 
   newUser
     .save()
@@ -17,18 +21,21 @@ userController.createUser = (req, res, next) => {
 };
 
 userController.verifyUser = (req, res, next) => {
-  // console.log("req.body", req.body)
-  models.User.findOne({ username:req.body.username, password:req.body.password })
-  .then((result) => {
-    // console.log("this result of User.findOne: ", result);
-    if (result === null) {
+  console.log(req.cookies, "cookies?")
+  const { password } = req.body;
+  models.User.findOne({ username: req.body.username })
+  .then(async (result) => {
+    res.locals.result = await bcrypt.compare(password, result.password);
+    res.locals.user = result;
+
+    if (res.locals.result === false) {
       res.locals.result = "User password Error";
       throw new Error(
         "It's either your password is wrong or your user name is wrong"
       );
     }
-    if (result.password === req.body.password) {
-      res.locals.result = result; //sending true back to frontend
+    if (res.locals.result === true) {
+      //sending true back to frontend
       return next();
     }
     return next(); //dont get stuck in middleware
@@ -36,7 +43,6 @@ userController.verifyUser = (req, res, next) => {
   .catch((err) =>
     next({ message: `userController.verifyUser: Error: ${err}` })
   );
-
 };
 
 module.exports = userController;

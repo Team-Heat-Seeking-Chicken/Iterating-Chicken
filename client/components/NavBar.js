@@ -9,15 +9,13 @@ import {
   Typography,
   Toolbar,
   Link,
-  } from "@material-ui/core";
-  import { borders } from '@material-ui/system';
-  import { StylesProvider, styled } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { borders } from '@material-ui/system';
+import { StylesProvider, styled } from '@material-ui/core/styles';
 
-  const SubmitContainer = styled(Container)({
-   
-    
-
-  })
+// const SubmitContainer = styled(Container)({
+  
+// })
 
   class NavBar extends Component {
     constructor(props){
