@@ -1,13 +1,19 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const cookieParser = require("cookie-parser");
+
 const userController = require("./controllers/userControllers");
+const cookieController = require("./controllers/cookieControllers");
 
 const postRoutes = require("./routes/postRoutes");
+const commentRoutes = require("./routes/commentRoutes");
+
 //* handle parsing request body
 app.use(express.json());
 //this parses url encoded body content from incomming requests ans place it in req.body....
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));
@@ -17,23 +23,32 @@ app.get("/", (req, res) => {
 });
 
 //POST request for create user
-app.post("/new", userController.createUser, (req, res) => {
+app.post("/new", 
+  userController.createUser,
+  cookieController.setSSIDCookie,
+  (req, res) => {
   res.json(res.locals.user); //json to front end
 });
 
 //POST request for Login
-app.post("/login", userController.verifyUser, (req, res) => {
+app.post("/login", 
+  userController.verifyUser, 
+  cookieController.setSSIDCookie, 
+  (req, res) => {
   res.json(res.locals.result); //temp message to front end
 });
 
-//
-// Post section
-//
+app.get('/logout',
+cookieController.deleteSSIDCookie,
+(req, res) => {
+  res.send('logged out')
+})
 
+// Post section
 app.use("/posts", postRoutes);
 
-
-
+// Comment section
+app.use("/comments", commentRoutes);
 
 //this catches any requests to an unknown route
 app.use((req, res) => res.sendStatus(404));
