@@ -9,19 +9,6 @@ mongoose.connection.once("open", () => {
 
 const Schema = mongoose.Schema;
 
-const postSchema = new Schema({
-  title: { type: String, required: true },
-  goal: { type: String, required: true },
-  method: { type: String },
-  duration: { type: String },
-  results: { type: String },
-  author: { type: String },
-  created_at: { type: String },
-  // likes: { type: Number, required: true, default: 0 },
-});
-
-const Post = mongoose.model("Post", postSchema);
-
 const commentSchema = new Schema({
   suggestion: { type: String, required: true },
   author: { type: String, required: true }, 
@@ -31,6 +18,28 @@ const commentSchema = new Schema({
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
+
+const postSchema = new Schema({
+  title: { type: String, required: true },
+  goal: { type: String, required: true },
+  method: { type: String },
+  duration: { type: String },
+  results: { type: String },
+  author: { type: String },
+  created_at: { type: String },
+  comments: {
+  //   suggestion: String,
+  //   author: String, 
+  //   created_at: String,
+  //   likes: Number,
+  //   id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+  },
+  // likes: { type: Number, required: true, default: 0 },
+});
+
+const Post = mongoose.model("Post", postSchema);
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },

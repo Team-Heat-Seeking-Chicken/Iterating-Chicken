@@ -15,6 +15,19 @@ commentController.createComment = (req, res, next) => {
     );
 };
 
+commentController.getPostComments = (req, res, next) => {
+  const postId = req.params.id;
+  models.Post.findOne({ _id: postId })
+  .populate('Comment')
+  .then(post => {
+    res.locals.postwithcomments = post;
+    return next();
+  })
+  .catch((err) => {
+    next({ message: `commentController.getPostComments: Error: ${err}` })
+  })
+};
+
 commentController.getAllComments = (req, res, next) => {
   models.Comment.find({})
   .then(results => {
@@ -28,11 +41,9 @@ commentController.getAllComments = (req, res, next) => {
 
 commentController.editComment = (req, res, next) => {
   const { id, suggestion } = req.body;
-  console.log(req.body, 'req.body')
   
   models.Comment.findOne({ _id: id })
   .then((comment) => {
-    console.log(comment, 'comment')
     comment.suggestion = suggestion,
 
     post.save()

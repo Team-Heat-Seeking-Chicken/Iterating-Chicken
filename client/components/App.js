@@ -107,6 +107,7 @@ class App extends Component {
   }
 
   render () {
+    console.log(this.state.feed, 'feed')
     //CONDITIONAL 1 DEFAULT: Checks if user IS NOT logged in & checks if create user has NOT been selected yet - Renders only the login screen
     if (!this.state.userLoggedIn && !this.state.createUser) {
       return (
