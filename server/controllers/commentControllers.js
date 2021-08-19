@@ -2,23 +2,32 @@ const models = require("../models/model");
 const commentController = {};
 
 commentController.createComment = (req, res, next) => {
-  const newComment = new models.Comment(req.body);
-
-  newComment
-    .save()
-    .then((data) => {
-      res.locals.comment = data;
-      return next();
+  models.Comment.create(req.body)
+  .then((data) => {
+    const newComment = data;
+    const postId = req.params.id;
+    models.Post.findOne({ _id: postId }, (err, post) => {
+      const postComments = post.comments;
+      postComments.push(newComment)
+      models.Post.findOneAndUpdate({ _id: postId }, {comments: postComments}, { new: true }, (err, post) => {
+        res.locals.postwithcomments = post;
+        return next();
+      })
     })
-    .catch((err) =>
-      next({ message: `commentController.createComment: Error: ${err}` })
-    );
+    // models.Post.findOneAndUpdate({ _id: postId }, { comments: [data._id] }, {new: true}, (err, post) => {
+    //   res.locals.postwithcomments = post;
+    //   return next();
+    // });
+  })
+  .catch((err) =>
+    next({ message: `commentController.createComment: Error: ${err}` })
+  );
 };
 
 commentController.getPostComments = (req, res, next) => {
   const postId = req.params.id;
   models.Post.findOne({ _id: postId })
-  .populate('Comment')
+  // .populate('Comment')
   .then(post => {
     res.locals.postwithcomments = post;
     return next();
