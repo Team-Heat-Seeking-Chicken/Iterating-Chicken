@@ -28,11 +28,9 @@ commentController.getAllComments = (req, res, next) => {
 
 commentController.editComment = (req, res, next) => {
   const { id, suggestion } = req.body;
-  console.log(req.body, 'req.body')
   
   models.Comment.findOne({ _id: id })
   .then((comment) => {
-    console.log(comment, 'comment')
     comment.suggestion = suggestion,
 
     post.save()
