@@ -18,6 +18,7 @@ class App extends Component {
     this.actualCreate = this.actualCreate.bind(this);
     this.loginUser = this.loginUser.bind(this);
     this.updatePosts = this.updatePosts.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   // On click function for when user clicks on "create user". Changes state to rerender create user box.
@@ -78,6 +79,12 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+  logout(e) {
+    console.log("I am logging out!")
+    fetch('/logout')
+    .then(res => res.json())
+    this.setState({ userLoggedIn: false });
+  }
   // Get all posts on mount, makes the request once 
   componentDidMount() {
     fetch('/posts')
@@ -124,6 +131,7 @@ class App extends Component {
           <NavBar 
             AppState={{...this.state}} 
             update={this.updatePosts}
+            logout={this.logout}
           />
           <FeedContainer 
             AppState={{...this.state}} 

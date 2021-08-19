@@ -3,7 +3,7 @@ const cookieController = {};
 
 cookieController.setSSIDCookie = (req, res, next) => {
   if (res.locals.user) {
-    res.cookie('SSID', res.locals.user.id, { httpOnly: true, expires: new Date(Date.now() + 900000) }) 
+    res.cookie('SSID', res.locals.user.id, { httpOnly: true, sameSite: true, expires: new Date(Date.now() + 900000) }) 
     // cookie lasts 15 min
   }
   return next();
@@ -19,6 +19,12 @@ cookieController.verifyCookie = (req, res, next) => {
   .catch((err) =>
     next({ message: `cookieController.verifyCookie: Error: ${err}` })
   );
+}
+
+cookieController.deleteSSIDCookie = (req, res, next) => {
+  const userCookie = req.cookies.SSID;
+  res.clearCookie('SSID')
+  return next();
 }
 
 module.exports = cookieController;

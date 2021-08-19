@@ -27,6 +27,7 @@ const SubmitContainer = styled(Container)({
       this.createPostOnClick = this.createPostOnClick.bind(this);
       this.submitNewPost = this.submitNewPost.bind(this);
       this.cancelCreateOnClick = this.cancelCreateOnClick.bind(this);
+      
     }
     
     createPostOnClick(e) {
@@ -36,6 +37,8 @@ const SubmitContainer = styled(Container)({
     cancelCreateOnClick(e) {
       this.setState({ createPost: false });
     }
+
+    
 
     async submitNewPost() {
       const newTitle = await document.getElementById('pTitle').value;
@@ -84,6 +87,7 @@ const SubmitContainer = styled(Container)({
               {/* <a className="active" href="#">Actualize</a> */}
           <Button color="primary" id='createPost' className='createPost' fullWidth variant="contained" size='small' onClick={this.createPostOnClick}>Create Post</Button>
               <center><h1 id='welcome'>Welcome {this.props.AppState.user.username}</h1></center>
+              <Button color="primary" id='logout' className='logout' halfwidth="true" size='small' onClick={this.props.logout}>Log Out</Button>
               {/* <input id='createPost' type="text" placeholder="create post"></input> */}
             </div>
           
