@@ -27,7 +27,7 @@ const EditContainer = styled(Container)({
 
 const PostTextField = styled(TextField)({
   color: 'white',
-})
+}) 
 
 class Post extends Component {
   constructor(props) {
@@ -38,6 +38,7 @@ class Post extends Component {
     this.editPost = this.editPost.bind(this);
     this.changeToEdit = this.changeToEdit.bind(this);
     this.deletePost = this.deletePost.bind(this);
+    this.getPostComments = this.getPostComments.bind(this);
   }
 
   async editPost(e) {
@@ -89,6 +90,16 @@ class Post extends Component {
     .then(arr => {
       this.props.update();
    })
+  }
+
+  async getPostComments() {
+    let postId = await this.props.postProps._id;
+    await fetch(`/comments/${postId}`)
+    .then(res => res.json())
+    .then(post => {
+      console.log(post, 'post')
+    })
+    .catch((err) => console.log(`Failed to get comments: ${err}`))
   }
 
   render() {
@@ -172,25 +183,34 @@ class Post extends Component {
       <p className='postText'> {' ' + this.props.postProps.results}</p>
       <h3>Author: {' ' + this.props.postProps.author}</h3>
       <h3>Date Posted:{' ' + this.props.postProps.created_at}</h3>
+      <button onClick={() => this.getPostComments()}>Show Comments</button>
     </PostContainer>
   )
 
   const authoredPost = (     
     <PostContainer maxWidth='md'>
-    <h1 className='postHeader'>{this.props.postProps.title}</h1>
-    <h3><b>Goal: </b></h3>
-    <p className='postText'> {' ' + this.props.postProps.goal}</p>
-    <h3><b>Method:</b></h3>
-    <p className='postText'> {' ' + this.props.postProps.method}</p>
-    <h3><b>Duration: </b></h3>
-    <p className='postText'> {' ' + this.props.postProps.duration}</p>
-    <h3><b>Results: </b></h3>
-    <p className='postText'> {' ' + this.props.postProps.results}</p>
-    <h3>Author: {' ' + this.props.postProps.author}</h3>
-    {/* <p></p> */}
-    <h3>Date Posted:{' ' + this.props.postProps.created_at}</h3>
-    {/* <p> </p> */}
-    <span><Button onClick={this.changeToEdit} color='primary' variant="contained" >Edit Post</Button><Button onClick={this.deletePost} color='secondary' variant="contained">Delete Post</Button></span>
+      <h1 className='postHeader'>{this.props.postProps.title}</h1>
+      <h3><b>Goal: </b></h3>
+      <p className='postText'> {' ' + this.props.postProps.goal}</p>
+      <h3><b>Method:</b></h3>
+      <p className='postText'> {' ' + this.props.postProps.method}</p>
+      <h3><b>Duration: </b></h3>
+      <p className='postText'> {' ' + this.props.postProps.duration}</p>
+      <h3><b>Results: </b></h3>
+      <p className='postText'> {' ' + this.props.postProps.results}</p>
+      <h3>Author: {' ' + this.props.postProps.author}</h3>
+      {/* <p></p> */}
+      <h3>Date Posted:{' ' + this.props.postProps.created_at}</h3>
+      {/* <p> </p> */}
+      <span>
+        <Button onClick={this.changeToEdit} color='primary' variant="contained">
+          Edit Post
+        </Button>
+        <Button onClick={this.deletePost} color='secondary' variant="contained">
+          Delete Post
+        </Button>
+      </span>
+      <button onClick={() => this.getPostComments()}>Show Comments</button>
     </PostContainer>
   )
 
