@@ -28,14 +28,15 @@ const SubmitContainer = styled(Container)({
       this.submitNewPost = this.submitNewPost.bind(this);
       this.cancelCreateOnClick = this.cancelCreateOnClick.bind(this);
     }
-
     
     createPostOnClick(e) {
       this.setState({ createPost: true })
     }
+
     cancelCreateOnClick(e) {
       this.setState({ createPost: false });
     }
+
     async submitNewPost() {
       const newTitle = await document.getElementById('pTitle').value;
       const newGoal = await document.getElementById('pGoal').value;
@@ -45,6 +46,7 @@ const SubmitContainer = styled(Container)({
       const newAuthor = this.props.AppState.user.username;
       let newDate = new Date();
       newDate = newDate.toTimeString()
+
       const body = await {
         title: newTitle,
         goal: newGoal,
@@ -54,7 +56,6 @@ const SubmitContainer = styled(Container)({
         author: newAuthor,
         created_at: newDate
       }
-
 
       await fetch('/posts', {
         method: 'POST',

@@ -21,7 +21,6 @@ userController.createUser = async (req, res, next) => {
 };
 
 userController.verifyUser = (req, res, next) => {
-  console.log(req.cookies, "cookies?")
   const { password } = req.body;
   models.User.findOne({ username: req.body.username })
   .then(async (result) => {
