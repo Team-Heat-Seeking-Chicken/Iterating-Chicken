@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { StylesProvider, makeStyles, styled } from '@material-ui/core/styles';
 import { grey } from "@material-ui/core/colors";
+import Comment from './Comment.js'
 
 const PostContainer = styled(Container)({
   background: 'rgb(245, 245, 245)',
@@ -34,6 +35,7 @@ class Post extends Component {
     super(props);
     this.state = {
       editForm: false,
+      showComments: false,
     }
     this.editPost = this.editPost.bind(this);
     this.changeToEdit = this.changeToEdit.bind(this);
@@ -93,13 +95,7 @@ class Post extends Component {
   }
 
   async getPostComments() {
-    let postId = await this.props.postProps._id;
-    await fetch(`/comments/${postId}`)
-    .then(res => res.json())
-    .then(post => {
-      console.log(post, 'post')
-    })
-    .catch((err) => console.log(`Failed to get comments: ${err}`))
+    this.setState({ showComments: !this.state.showComments })
   }
 
   render() {
@@ -183,7 +179,20 @@ class Post extends Component {
       <p className='postText'> {' ' + this.props.postProps.results}</p>
       <h3>Author: {' ' + this.props.postProps.author}</h3>
       <h3>Date Posted:{' ' + this.props.postProps.created_at}</h3>
-      <button onClick={() => this.getPostComments()}>Show Comments</button>
+      { this.props.postProps.comments.length > 0 && 
+        <Button className="comments-button" onClick={() => this.getPostComments()} variant="contained">Show Comments</Button>
+      }
+      {
+        (this.props.postProps.comments.length > 0 && this.state.showComments) &&
+          this.props.postProps.comments.map(comment => {
+            return (
+              <Comment 
+                key={`c${comment._id}`}
+                comment={comment}
+              />
+            )
+        })
+      }
     </PostContainer>
   )
 
@@ -206,11 +215,24 @@ class Post extends Component {
         <Button onClick={this.changeToEdit} color='primary' variant="contained">
           Edit Post
         </Button>
-        <Button onClick={this.deletePost} color='secondary' variant="contained">
+        <Button className="delete-button" onClick={this.deletePost} color='secondary' variant="contained">
           Delete Post
         </Button>
       </span>
-      <button onClick={() => this.getPostComments()}>Show Comments</button>
+      { this.props.postProps.comments.length > 0 && 
+        <Button className="comments-button" onClick={() => this.getPostComments()} variant="contained">Show Comments</Button>
+      }
+      {
+        (this.props.postProps.comments.length > 0 && this.state.showComments) &&
+          this.props.postProps.comments.map(comment => {
+            return (
+              <Comment 
+                key={`c${comment._id}`}
+                comment={comment}
+              />
+            )
+        })
+      }
     </PostContainer>
   )
 

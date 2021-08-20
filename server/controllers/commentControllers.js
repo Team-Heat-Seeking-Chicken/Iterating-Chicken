@@ -11,6 +11,7 @@ commentController.createComment = (req, res, next) => {
       postComments.push(newComment)
       models.Post.findOneAndUpdate({ _id: postId }, {comments: postComments}, { new: true }, (err, post) => {
         res.locals.postwithcomments = post;
+        // console.log(res.locals.postwithcomments, 'res.locals.postwithcomments')
         return next();
       })
     })
